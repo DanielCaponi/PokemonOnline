@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  db:
+    image: "mysql"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+  app:
+    tty: true
+    stdin_open: true
+    build: ./
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/docker/app # add our local code to dockerfile
+    depends_on:
+      - db
+
+volumes:
+  mysql-data:
