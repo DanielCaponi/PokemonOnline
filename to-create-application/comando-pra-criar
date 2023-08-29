@@ -1,0 +1,2 @@
+ docker build -t rails-toolbox -f Dockerfile.rails .
+ docker run -it -v $PWD:/opt/app rails-toolbox rails new --skip-bundle . -d mysql
