@@ -1,4 +1,4 @@
-FROM ruby:3.0 as base
+FROM ruby:3.1.2 as base
 
 # Installing Node.js and its dependencies
 RUN apt-get update -qq
@@ -15,4 +15,4 @@ ADD . /docker/app
 ARG DEFAULT_PORT 3000
 EXPOSE ${DEFAULT_PORT}
 
-CMD ["rails","server"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
